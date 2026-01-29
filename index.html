@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Username Generator + Handle Name Generator (AI Brain) | Free Tool</title>
+  <meta name="description" content="Generate unique usernames and handle names using AI Brain. Includes platform styles, categories, presets, copy/export, and favorites. 100% free." />
+  <meta name="keywords" content="username generator, handle name generator, instagram username generator, youtube name generator, gaming username generator, unique username generator" />
+  <!-- SEO later: update canonical when live -->
+  <link rel="canonical" href="#" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI Username + Handle Generator" />
+  <meta property="og:description" content="Generate unique usernames and handles with AI Brain. Best names on top. Copy, export, save favorites." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts (Real Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@300;400;600&family=Montserrat:wght@300;400;700&family=Roboto:wght@300;400;700&family=Orbitron:wght@400;700&family=Oswald:wght@300;500;700&family=Rajdhani:wght@300;500;700&family=Bebas+Neue&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a2f;
+      --muted:#93a4c7;
+      --text:#eaf1ff;
+      --border:rgba(255,255,255,.12);
+      --primary:#4f8cff;
+      --primary2:#3ad3a6;
+      --danger:#ff4f68;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+
+    body{
+      margin:0;
+      font-family:Poppins, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(79,140,255,.25), transparent 60%),
+                  radial-gradient(900px 500px at 80% 20%, rgba(58,211,166,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      padding:16px;
+    }
+
+    .wrap{ max-width:1100px; margin:0 auto; }
+
+    header{ text-align:center; margin:10px 0 18px; }
+    header h1{ margin:0; font-size:28px; letter-spacing:.2px; }
+    header p{ margin:8px 0 0; color:var(--muted); font-size:14px; }
+
+    .topbar{
+      display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin:18px 0;
+    }
+
+    .select, .input{
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      border-radius:12px;
+      color:var(--text);
+      padding:10px 12px;
+      outline:none;
+      min-width:180px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    @media(max-width:900px){ .grid{grid-template-columns:1fr;} }
+
+    .card{
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .card h2{ margin:0 0 10px; font-size:18px; }
+
+    .row{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0; }
+    label{ font-size:12px; color:var(--muted); display:block; margin-bottom:6px; }
+    .field{ flex:1; min-width:160px; }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.2s;
+    }
+    .btn.primary{ background:linear-gradient(90deg, var(--primary), var(--primary2)); color:#06101c; }
+    .btn.blue{ background:rgba(79,140,255,.18); border:1px solid rgba(79,140,255,.35); color:var(--text); }
+    .btn.danger{ background:rgba(255,79,104,.14); border:1px solid rgba(255,79,104,.35); color:var(--text); }
+    .btn:hover{ transform:translateY(-1px); }
+
+    .presets{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 0; }
+    .chip{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+      font-size:12px;
+      font-weight:600;
+    }
+
+    .panel{ display:none; }
+    .panel.active{ display:block; }
+
+    .metaLine{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .count{ color:var(--muted); font-size:12px; }
+
+    .out{ margin-top:14px; display:grid; gap:10px; }
+
+    .item{
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      border-radius:14px;
+      padding:10px 12px;
+    }
+
+    .nameLine{
+      font-size:18px;
+      font-weight:800;
+      padding:6px 4px;
+      word-break:break-word;
+      line-height:1.2;
+    }
+
+    /* NEW: actions now vertical */
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }
+    .actions .btn{ width:100%; }
+
+    footer{ margin:24px 0 10px; color:var(--muted); font-size:12px; text-align:center; }
+
+    .faq{
+      margin-top:18px;
+      padding-top:10px;
+      border-top:1px solid var(--border);
+    }
+    .faq h3{ margin:10px 0 6px; }
+    .faq p{ margin:0 0 10px; color:var(--muted); font-size:13px; line-height:1.55; }
+
+    .suggestBox{
+      margin-top:14px;
+      border-top:1px dashed rgba(255,255,255,.14);
+      padding-top:12px;
+    }
+    .suggestBox h3{
+      margin:0 0 10px;
+      font-size:14px;
+      color:var(--text);
+      opacity:.95;
+    }
+    .suggestList{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .suggestTag{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+      user-select:none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>AI Username Generator + Handle Name Generator</h1>
+      <p>Smart AI Brain system — clean, unique, repeat-letter-free names. Copy, Export, Save Favorites.</p>
+    </header>
+
+    <!-- Global Settings -->
+    <div class="topbar">
+      <select class="select" id="font" onchange="renderFav()">
+        <option value="Poppins, sans-serif">Poppins (Default)</option>
+        <option value="Inter, sans-serif">Inter</option>
+        <option value="Montserrat, sans-serif">Montserrat</option>
+        <option value="Roboto, sans-serif">Roboto</option>
+        <option value="DM Sans, sans-serif">DM Sans</option>
+        <option value="Rajdhani, sans-serif">Rajdhani</option>
+        <option value="Oswald, sans-serif">Oswald</option>
+        <option value="Orbitron, sans-serif">Orbitron (Gaming)</option>
+        <option value="Bebas Neue, sans-serif">Bebas Neue</option>
+        <option value="__RANDOM__">Random Font</option>
+      </select>
+
+      <button class="btn blue" id="btnUser" onclick="openTab('user')">Username</button>
+      <button class="btn blue" id="btnHandle" onclick="openTab('handle')">Handle Name</button>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT: Generator -->
+      <div class="card">
+        <div id="tabUser" class="panel active">
+          <h2>Username Generator (Spaces Allowed)</h2>
+
+          <div class="row">
+            <div class="field">
+              <label>Base Word</label>
+              <input class="input" id="uWord" placeholder="e.g. Nitin" />
+            </div>
+            <div class="field">
+              <label>Second Word (optional)</label>
+              <input class="input" id="uWord2" placeholder="e.g. Music / Gaming" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Platform</label>
+              <select class="select" id="uPlatform">
+                <option value="instagram">Instagram</option>
+                <option value="youtube">YouTube</option>
+                <option value="gaming">Gaming</option>
+                <option value="pubg">PUBG / FF</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Category</label>
+              <select class="select" id="uCategory">
+                <option value="">Select</option>
+                <option value="Music">Music</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Cooking">Cooking</option>
+                <option value="Vlog">Vlog</option>
+                <option value="Tech">Tech</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Travel">Travel</option>
+                <option value="Study">Study</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Prefix</label>
+              <select class="select" id="uPrefix">
+                <option value="">None</option>
+                <option value="the">the</option>
+                <option value="its">its</option>
+                <option value="mr">mr</option>
+                <option value="official">official</option>
+                <option value="real">real</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Suffix</label>
+              <select class="select" id="uSuffix">
+                <option value="">None</option>
+                <option value="yt">yt</option>
+                <option value="gaming">gaming</option>
+                <option value="pro">pro</option>
+                <option value="x">x</option>
+                <option value="hq">hq</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Trending Word</label>
+              <select class="select" id="uTrend">
+                <option value="">None</option>
+                <option value="vibe">vibe</option>
+                <option value="prime">prime</option>
+                <option value="legend">legend</option>
+                <option value="alpha">alpha</option>
+                <option value="king">king</option>
+                <option value="queen">queen</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Symbol</label>
+              <select class="select" id="uSymbol">
+                <option value="">None</option>
+                <option value=".">.</option>
+                <option value="_">_</option>
+                <option value="-">-</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Symbol Position</label>
+              <select class="select" id="uSymPos">
+                <option value="random">Random</option>
+                <option value="start">Start</option>
+                <option value="middle">Middle</option>
+                <option value="end">End</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Quantity</label>
+              <input class="input" id="uQty" type="number" value="20" min="1" max="100" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Min Length</label>
+              <input class="input" id="uMin" type="number" value="4" />
+            </div>
+            <div class="field">
+              <label>Max Length</label>
+              <input class="input" id="uMax" type="number" value="18" />
+            </div>
+          </div>
+
+          <div class="presets">
+            <div class="chip" onclick="applyPreset('user','aesthetic')">Aesthetic</div>
+            <div class="chip" onclick="applyPreset('user','minimal')">Minimal</div>
+            <div class="chip" onclick="applyPreset('user','gaming')">Gaming</div>
+            <div class="chip" onclick="applyPreset('user','pro')">Pro</div>
+            <div class="chip" onclick="applyPreset('user','vip')">VIP</div>
+            <div class="chip" onclick="applyPreset('user','cute')">Cute</div>
+          </div>
+
+          <div class="metaLine">
+            <button class="btn primary" onclick="generateNames('user')">Generate Usernames</button>
+            <div class="count" id="uCount">0 Generated</div>
+          </div>
+
+          <div class="metaLine">
+            <button class="btn blue" onclick="copyAll('user')">Copy All</button>
+            <button class="btn blue" onclick="exportTxt('user')">Export TXT</button>
+          </div>
+
+          <div class="suggestBox">
+            <h3>Suggestions (AI Top Picks)</h3>
+            <div class="suggestList" id="uSuggest"></div>
+          </div>
+
+          <div class="out" id="uOut"></div>
+        </div>
+
+        <div id="tabHandle" class="panel">
+          <h2>Handle Name Generator (No Spaces)</h2>
+
+          <div class="row">
+            <div class="field">
+              <label>Base Word</label>
+              <input class="input" id="hWord" placeholder="e.g. Nitin" />
+            </div>
+            <div class="field">
+              <label>Second Word (optional)</label>
+              <input class="input" id="hWord2" placeholder="e.g. Music / Gaming" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Platform</label>
+              <select class="select" id="hPlatform">
+                <option value="instagram">Instagram</option>
+                <option value="youtube">YouTube</option>
+                <option value="gaming">Gaming</option>
+                <option value="pubg">PUBG / FF</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Category</label>
+              <select class="select" id="hCategory">
+                <option value="">Select</option>
+                <option value="Music">Music</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Cooking">Cooking</option>
+                <option value="Vlog">Vlog</option>
+                <option value="Tech">Tech</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Travel">Travel</option>
+                <option value="Study">Study</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Prefix</label>
+              <select class="select" id="hPrefix">
+                <option value="">None</option>
+                <option value="the">the</option>
+                <option value="its">its</option>
+                <option value="mr">mr</option>
+                <option value="official">official</option>
+                <option value="real">real</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Suffix</label>
+              <select class="select" id="hSuffix">
+                <option value="">None</option>
+                <option value="yt">yt</option>
+                <option value="gaming">gaming</option>
+                <option value="pro">pro</option>
+                <option value="x">x</option>
+                <option value="hq">hq</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Trending Word</label>
+              <select class="select" id="hTrend">
+                <option value="">None</option>
+                <option value="vibe">vibe</option>
+                <option value="prime">prime</option>
+                <option value="legend">legend</option>
+                <option value="alpha">alpha</option>
+                <option value="king">king</option>
+                <option value="queen">queen</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Symbol</label>
+              <select class="select" id="hSymbol">
+                <option value="">None</option>
+                <option value=".">.</option>
+                <option value="_">_</option>
+                <option value="-">-</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Symbol Position</label>
+              <select class="select" id="hSymPos">
+                <option value="random">Random</option>
+                <option value="start">Start</option>
+                <option value="middle">Middle</option>
+                <option value="end">End</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Quantity</label>
+              <input class="input" id="hQty" type="number" value="20" min="1" max="100" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Min Length</label>
+              <input class="input" id="hMin" type="number" value="4" />
+            </div>
+            <div class="field">
+              <label>Max Length</label>
+              <input class="input" id="hMax" type="number" value="18" />
+            </div>
+          </div>
+
+          <div class="presets">
+            <div class="chip" onclick="applyPreset('handle','aesthetic')">Aesthetic</div>
+            <div class="chip" onclick="applyPreset('handle','minimal')">Minimal</div>
+            <div class="chip" onclick="applyPreset('handle','gaming')">Gaming</div>
+            <div class="chip" onclick="applyPreset('handle','pro')">Pro</div>
+            <div class="chip" onclick="applyPreset('handle','vip')">VIP</div>
+            <div class="chip" onclick="applyPreset('handle','cute')">Cute</div>
+          </div>
+
+          <div class="metaLine">
+            <button class="btn primary" onclick="generateNames('handle')">Generate Handles</button>
+            <div class="count" id="hCount">0 Generated</div>
+          </div>
+
+          <div class="metaLine">
+            <button class="btn blue" onclick="copyAll('handle')">Copy All</button>
+            <button class="btn blue" onclick="exportTxt('handle')">Export TXT</button>
+          </div>
+
+          <div class="suggestBox">
+            <h3>Suggestions (AI Top Picks)</h3>
+            <div class="suggestList" id="hSuggest"></div>
+          </div>
+
+          <div class="out" id="hOut"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Favorites -->
+      <div class="card">
+        <h2>Favorites</h2>
+        <div class="metaLine">
+          <div class="count" id="fCount">0 Saved</div>
+          <button class="btn danger" onclick="clearFav()">Clear</button>
+        </div>
+        <div class="out" id="favOut"></div>
+
+        <div class="faq">
+          <h3>FAQ</h3>
+          <p><b>Q:</b> What is AI Username Generator?<br>
+            <b>A:</b> It generates unique and brandable usernames using smart mixing and repeat-letter filters.</p>
+
+          <p><b>Q:</b> Handle name vs Username?<br>
+            <b>A:</b> Username can contain spaces, but handle name cannot contain spaces.</p>
+
+          <p><b>Q:</b> Can I copy all names?<br>
+            <b>A:</b> Yes, use Copy All or Export TXT.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="year"></span> AI Username & Handle Generator — Built by Nitin
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").innerText = new Date().getFullYear();
+
+    function openTab(tab){
+      document.getElementById("tabUser").classList.remove("active");
+      document.getElementById("tabHandle").classList.remove("active");
+      document.getElementById("btnUser").classList.remove("active");
+      document.getElementById("btnHandle").classList.remove("active");
+
+      if(tab==="user"){
+        document.getElementById("tabUser").classList.add("active");
+        document.getElementById("btnUser").classList.add("active");
+      } else {
+        document.getElementById("tabHandle").classList.add("active");
+        document.getElementById("btnHandle").classList.add("active");
+      }
+    }
+    openTab("user");
+
+    const presetMap = {
+      aesthetic:{symbol:".",pos:"random",prefix:"",suffix:"",trend:"vibe"},
+      minimal:{symbol:"",pos:"end",prefix:"",suffix:"",trend:""},
+      gaming:{symbol:"_",pos:"random",prefix:"",suffix:"op",trend:"alpha"},
+      pro:{symbol:"_",pos:"end",prefix:"official",suffix:"pro",trend:"prime"},
+      vip:{symbol:".",pos:"end",prefix:"real",suffix:"x",trend:"legend"},
+      cute:{symbol:".",pos:"middle",prefix:"its",suffix:"",trend:"queen"}
+    };
+
+    function applyPreset(type,p){
+      const map = presetMap[p];
+      const S = (id)=>document.getElementById(id);
+      if(type==="user"){
+        S("uSymbol").value = map.symbol;
+        S("uSymPos").value = map.pos;
+        S("uPrefix").value = map.prefix;
+        S("uSuffix").value = map.suffix;
+        S("uTrend").value = map.trend;
+      }else{
+        S("hSymbol").value = map.symbol;
+        S("hSymPos").value = map.pos;
+        S("hPrefix").value = map.prefix;
+        S("hSuffix").value = map.suffix;
+        S("hTrend").value = map.trend;
+      }
+    }
+
+    const FONT_POOL = [
+      "Poppins, sans-serif",
+      "Inter, sans-serif",
+      "Montserrat, sans-serif",
+      "Roboto, sans-serif",
+      "DM Sans, sans-serif",
+      "Rajdhani, sans-serif",
+      "Oswald, sans-serif",
+      "Orbitron, sans-serif",
+      "Bebas Neue, sans-serif"
+    ];
+
+    function getSelectedFont(){
+      const f = document.getElementById("font").value;
+      if(f === "__RANDOM__"){
+        return FONT_POOL[Math.floor(Math.random()*FONT_POOL.length)];
+      }
+      return f;
+    }
+
+    const AI_BRAIN = {
+      syllablesStart: ["ni","na","ne","no","ka","ki","ku","ra","ri","ro","ta","te","to","vi","va","ve","xo","za","ze","xi"],
+      syllablesMid: ["tin","ton","tar","mir","zen","nova","vibe","core","byte","wave","mint","spark","echo","flux","craft","play"],
+      syllablesEnd: ["x","ify","hub","zone","verse","pro","yt","hq","lab","gen","io","on","ly"],
+
+      hasBadRepeat(str){
+        if(/([a-zA-Z0-9])\1\1/.test(str)) return true;
+        const lower = str.toLowerCase();
+        const map = {};
+        for(const ch of lower){
+          if(!/[a-z0-9]/.test(ch)) continue;
+          map[ch] = (map[ch]||0)+1;
+          if(map[ch] >= 5) return true;
+        }
+        return false;
+      },
+
+      cleanWord(w, allowSpace){
+        w = (w||"").trim();
+        w = w.replace(/[^a-zA-Z0-9\s]/g,"");
+        if(!allowSpace) w = w.replace(/\s+/g,"");
+        return w;
+      },
+
+      capSmart(str){
+        return str.split(/[\s._-]+/).filter(Boolean).map(s=>{
+          return s.charAt(0).toUpperCase()+s.slice(1).toLowerCase();
+        }).join("");
+      },
+
+      randomNum(){ return Math.floor(1 + Math.random()*99); },
+
+      score(name, allowSpace){
+        let s = 0;
+        const n = name.replace(/\s+/g,"");
+        if(n.length >= 6 && n.length <= 14) s += 3;
+        if(!/[^a-zA-Z0-9._-\s]/.test(name)) s += 2;
+        if(!/\d{3,}/.test(name)) s += 1;
+        if(/[A-Z]/.test(name)) s += 1;
+        if(!AI_BRAIN.hasBadRepeat(name)) s += 3;
+        if(!allowSpace && /\s/.test(name)) s -= 5;
+        return s;
+      },
+
+      platformStyle(platform, name, allowSpace){
+        if(platform==="instagram") return allowSpace ? name : name.replace(/\s+/g,"");
+        if(platform==="youtube") return name.replace(/\s+/g,"");
+        if(platform==="gaming"){
+          return name.split("").map(ch=>{
+            if(/[a-zA-Z]/.test(ch)) return Math.random()>.5?ch.toUpperCase():ch.toLowerCase();
+            return ch;
+          }).join("").replace(/\s+/g,"");
+        }
+        if(platform==="pubg") return name.replace(/\s+/g,"");
+        return name;
+      },
+
+      addSymbol(name, sym, pos, allowSpace){
+        if(!sym) return name;
+        if(!allowSpace) name = name.replace(/\s+/g,"");
+        if(pos==="start") return sym + name;
+        if(pos==="end") return name + sym;
+        if(pos==="middle"){
+          const mid = Math.floor(name.length/2);
+          return name.slice(0,mid) + sym + name.slice(mid);
+        }
+        const r = ["start","middle","end"][Math.floor(Math.random()*3)];
+        return AI_BRAIN.addSymbol(name, sym, r, allowSpace);
+      },
+
+      fitLength(name, minL, maxL){
+        if(name.length < minL) name = name + AI_BRAIN.randomNum();
+        if(name.length > maxL) name = name.slice(0, maxL);
+        return name;
+      },
+
+      makeCandidate({word1, word2, category, trend, prefix, suffix, platform, allowSpace, sym, pos}){
+        let base = word1;
+
+        if(word2 && Math.random() > 0.4){
+          base = allowSpace ? (word1+" "+word2) : (word1+word2);
+        }
+
+        if(category && Math.random() > 0.5){
+          base = allowSpace ? (base+" "+category) : (base+category);
+        }
+
+        if(trend && Math.random() > 0.5){
+          base = allowSpace ? (base+" "+trend) : (base+trend);
+        }
+
+        if(Math.random() > 0.55){
+          const s1 = AI_BRAIN.syllablesStart[Math.floor(Math.random()*AI_BRAIN.syllablesStart.length)];
+          const s2 = AI_BRAIN.syllablesMid[Math.floor(Math.random()*AI_BRAIN.syllablesMid.length)];
+          const s3 = AI_BRAIN.syllablesEnd[Math.floor(Math.random()*AI_BRAIN.syllablesEnd.length)];
+          let brain = AI_BRAIN.capSmart(s1+s2+s3);
+          base = allowSpace ? (base+" "+brain) : (base+brain);
+        }
+
+        if(prefix) base = allowSpace ? (prefix+" "+base) : (prefix+base);
+        if(suffix) base = allowSpace ? (base+" "+suffix) : (base+suffix);
+
+        base = AI_BRAIN.platformStyle(platform, base, allowSpace);
+        base = AI_BRAIN.addSymbol(base, sym, pos, allowSpace);
+
+        if(Math.random() > 0.7) base += AI_BRAIN.randomNum();
+        if(!allowSpace) base = base.replace(/\s+/g,"");
+
+        return base;
+      }
+    };
+
+    let lastGenerated = { user:[], handle:[] };
+
+    function renderSuggestions(type, arr){
+      const box = document.getElementById(type==="user" ? "uSuggest" : "hSuggest");
+      box.innerHTML = "";
+      const top = arr.slice(0, 5);
+      top.forEach(n=>{
+        const tag = document.createElement("div");
+        tag.className = "suggestTag";
+        tag.innerText = n;
+        tag.onclick = ()=> copyText(n);
+        box.appendChild(tag);
+      });
+    }
+
+    function generateNames(type){
+      const S = (id)=>document.getElementById(id);
+      const allowSpace = (type==="user");
+
+      const word1 = AI_BRAIN.cleanWord(type==="user"?S("uWord").value:S("hWord").value, allowSpace);
+      const word2 = AI_BRAIN.cleanWord(type==="user"?S("uWord2").value:S("hWord2").value, allowSpace);
+
+      if(!word1){ alert("Enter Base Word"); return; }
+
+      const platform = type==="user"?S("uPlatform").value:S("hPlatform").value;
+      const category = type==="user"?S("uCategory").value:S("hCategory").value;
+
+      const prefix = type==="user"?S("uPrefix").value:S("hPrefix").value;
+      const suffix = type==="user"?S("uSuffix").value:S("hSuffix").value;
+
+      const sym = type==="user"?S("uSymbol").value:S("hSymbol").value;
+      const pos = type==="user"?S("uSymPos").value:S("hSymPos").value;
+
+      const trend = type==="user"?S("uTrend").value:S("hTrend").value;
+
+      const minL = parseInt(type==="user"?S("uMin").value:S("hMin").value) || 4;
+      const maxL = parseInt(type==="user"?S("uMax").value:S("hMax").value) || 18;
+
+      const qty = Math.min(Math.max(parseInt(type==="user"?S("uQty").value:S("hQty").value) || 20, 1), 100);
+
+      const out = type==="user"?S("uOut"):S("hOut");
+      const font = getSelectedFont();
+
+      const candidates = [];
+      const set = new Set();
+      let attempts = 0;
+
+      while(set.size < qty && attempts < qty*60){
+        attempts++;
+
+        let name = AI_BRAIN.makeCandidate({
+          word1, word2, category, trend, prefix, suffix, platform,
+          allowSpace, sym, pos
+        });
+
+        name = AI_BRAIN.fitLength(name, minL, maxL);
+
+        if(AI_BRAIN.hasBadRepeat(name)) continue;
+        if(!allowSpace && /\s/.test(name)) continue;
+
+        if(!set.has(name)){
+          set.add(name);
+          candidates.push({ name, score: AI_BRAIN.score(name, allowSpace) });
+        }
+      }
+
+      candidates.sort((a,b)=>b.score - a.score);
+      const arr = candidates.map(x=>x.name);
+      lastGenerated[type] = arr;
+
+      renderSuggestions(type, arr);
+
+      out.innerHTML = "";
+      arr.forEach(n=>{
+        const safe = n.replace(/'/g,"\\'");
+        out.innerHTML += `
+          <div class="item">
+            <div class="nameLine" style="font-family:${font}">${n}</div>
+            <div class="actions">
+              <button class="btn blue" onclick="copyText('${safe}')">Copy</button>
+              <button class="btn primary" onclick="saveFav('${safe}')">Save</button>
+            </div>
+          </div>
+        `;
+      });
+
+      if(type==="user") S("uCount").innerText = arr.length + " Generated";
+      else S("hCount").innerText = arr.length + " Generated";
+    }
+
+    function copyText(t){
+      navigator.clipboard.writeText(t);
+      alert("Copied: " + t);
+    }
+
+    function copyAll(type){
+      const list = lastGenerated[type] || [];
+      if(!list.length){ alert("Nothing to copy"); return; }
+      navigator.clipboard.writeText(list.join("\n"));
+      alert("Copied All ("+list.length+")");
+    }
+
+    function exportTxt(type){
+      const list = lastGenerated[type] || [];
+      if(!list.length){ alert("Nothing to export"); return; }
+      const blob = new Blob([list.join("\n")], {type:"text/plain"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = (type==="user" ? "usernames.txt" : "handles.txt");
+      a.click();
+    }
+
+    function getFav(){
+      return JSON.parse(localStorage.getItem("favNames") || "[]");
+    }
+    function setFav(arr){
+      localStorage.setItem("favNames", JSON.stringify(arr));
+    }
+    function saveFav(name){
+      let fav = getFav();
+      if(!fav.includes(name)) fav.unshift(name);
+      setFav(fav);
+      renderFav();
+    }
+    function clearFav(){
+      if(confirm("Clear all favorites?")){
+        setFav([]);
+        renderFav();
+      }
+    }
+    function removeFav(name){
+      let fav = getFav().filter(x=>x!==name);
+      setFav(fav);
+      renderFav();
+    }
+
+    function renderFav(){
+      const favOut = document.getElementById("favOut");
+      const fCount = document.getElementById("fCount");
+      const font = getSelectedFont();
+
+      const fav = getFav();
+      fCount.innerText = fav.length + " Saved";
+      favOut.innerHTML = "";
+
+      fav.forEach(n=>{
+        const safe = n.replace(/'/g,"\\'");
+        favOut.innerHTML += `
+          <div class="item">
+            <div class="nameLine" style="font-family:${font}">${n}</div>
+            <div class="actions">
+              <button class="btn blue" onclick="copyText('${safe}')">Copy</button>
+              <button class="btn danger" onclick="removeFav('${safe}')">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+    renderFav();
+  </script>
+</body>
+</html>
